@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 class PagesController extends Controller
 {
+    public function test() {
+        return Inertia::render('Test');
+    }
+
+    
     public function welcome() {
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
