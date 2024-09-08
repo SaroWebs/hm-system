@@ -17,6 +17,6 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard/Home');
     }
 }
