@@ -38,18 +38,11 @@ return new class extends Migration
 
             // Hierarchical management and permissions
             $table->integer('access_level')->default(0);                     // Defines the hierarchy level of the role
-            $table->boolean('is_super_admin')->default(false);               // Super admin with full privileges
-
-            // Tracking fields
-            $table->unsignedBigInteger('created_by')->nullable();            // Tracks who created this role
-            $table->unsignedBigInteger('updated_by')->nullable();            // Tracks who last updated this role
+            $table->boolean('is_super_admin')->default(false);               // Super admin with full privilege
 
             $table->timestamps();
 
-            // Foreign key relationships
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-        });
+            });
     }
 
 
