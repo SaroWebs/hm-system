@@ -13,19 +13,17 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('patient_number')->unique();
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
             $table->date('date_of_birth');
-            $table->string('gender');
-            $table->string('blood_type');
-            $table->text('allergies')->nullable();
-            $table->text('chronic_conditions')->nullable();
-            $table->string('emergency_contact_name');
-            $table->string('emergency_contact_number');
-            $table->string('insurance_provider')->nullable();
-            $table->string('insurance_policy_number')->nullable();
-            $table->date('last_visit_date')->nullable();
-            $table->text('notes')->nullable();
+            $table->enum('gender', ['male', 'female', 'other'])->default('male');
+            $table->string('contact_number')->unique(); // Ensure unique contact numbers
+            $table->string('email')->nullable()->unique(); // Unique email for patient communication
+            $table->text('address')->nullable();
+            $table->string('emergency_contact_name')->nullable();
+            $table->string('emergency_contact_number')->nullable();
+            $table->string('insurance_provider')->nullable(); // Added for insurance tracking
+            $table->string('policy_number')->nullable(); // Added for insurance tracking
             $table->timestamps();
             $table->softDeletes();
         });

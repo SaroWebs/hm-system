@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(true);
+
+            // Management permissions
             $table->boolean('can_manage_users')->default(false);
             $table->boolean('can_manage_roles')->default(false);
             $table->boolean('can_manage_patients')->default(false);
@@ -24,10 +26,32 @@ return new class extends Migration
             $table->boolean('can_manage_billing')->default(false);
             $table->boolean('can_manage_inventory')->default(false);
             $table->boolean('can_generate_reports')->default(false);
-            $table->integer('access_level')->default(0);
+
+            // Additional permissions
+            $table->boolean('can_manage_lab_tests')->default(false);         // Lab and diagnostics management
+            $table->boolean('can_manage_pharmacy')->default(false);          // Pharmacy management
+            $table->boolean('can_manage_ward_beds')->default(false);         // Ward and bed management
+            $table->boolean('can_manage_emergency')->default(false);         // Emergency management
+            $table->boolean('can_manage_insurance')->default(false);         // Insurance management
+            $table->boolean('can_manage_communication')->default(false);     // Communication and notifications
+            $table->boolean('can_audit_compliance')->default(false);         // Audit and compliance
+
+            // Hierarchical management and permissions
+            $table->integer('access_level')->default(0);                     // Defines the hierarchy level of the role
+            $table->boolean('is_super_admin')->default(false);               // Super admin with full privileges
+
+            // Tracking fields
+            $table->unsignedBigInteger('created_by')->nullable();            // Tracks who created this role
+            $table->unsignedBigInteger('updated_by')->nullable();            // Tracks who last updated this role
+
             $table->timestamps();
+
+            // Foreign key relationships
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
     }
+
 
     /**
      * Reverse the migrations.

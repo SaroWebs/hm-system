@@ -22,8 +22,6 @@ return new class extends Migration
             $table->decimal('salary', 10, 2)->nullable();
             $table->string('shift')->nullable();
             $table->json('qualifications')->nullable();
-            $table->string('emergency_contact_name');
-            $table->string('emergency_contact_number');
             $table->date('contract_end_date')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('is_active')->default(true);

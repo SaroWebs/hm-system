@@ -24,7 +24,6 @@ return new class extends Migration
             $table->date('due_date');
             $table->string('payment_method')->nullable();
             $table->text('notes')->nullable();
-            $table->json('items')->nullable();
             $table->boolean('is_insured')->default(false);
             $table->string('insurance_claim_number')->nullable();
             $table->timestamps();
