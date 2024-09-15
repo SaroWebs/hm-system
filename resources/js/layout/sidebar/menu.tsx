@@ -136,7 +136,9 @@ export function Menu({ isOpen }: MenuProps) {
                             <Tooltip delayDuration={100}>
                                 <TooltipTrigger asChild>
                                     <Button
-                                        onClick={() => router.replace("/")}
+                                        onClick={() => {
+                                            router.post('/logout'); // Use Laravel's logout route
+                                        }}
                                         variant="outline"
                                         className="w-full justify-center h-10 mt-5"
                                     >

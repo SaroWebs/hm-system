@@ -11,11 +11,7 @@ interface ContentLayoutProps {
 }
 
 const Layout = ({ title, children, className, animate, back }: ContentLayoutProps) => {
-	const variants = {
-		initial: { x: 100 },
-		animate: { x: 0 },
-	};
-
+	
 	const animationProps = animate
 		? {
 				initial: { x: 100 },

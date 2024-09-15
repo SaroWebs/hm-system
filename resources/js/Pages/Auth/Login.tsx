@@ -1,6 +1,8 @@
 import { FormEventHandler } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
+import { Button } from '@/components/ui/button';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -18,77 +20,69 @@ export default function Login({ status, canResetPassword }: { status?: string, c
     };
 
     return (
-        <GuestLayout>
+        <>
             <Head title="Log in" />
-
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-
-            <form onSubmit={submit}>
-                <div>
-                    <label htmlFor="email" className="block font-medium text-sm text-gray-700">Email</label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        autoFocus
+            <div className="w-full lg:grid lg:min-h-[95vh] lg:grid-cols-2">
+                <div className="flex items-center justify-center py-12">
+                    <div className="mx-auto grid w-[350px] gap-6">
+                        <form onSubmit={submit}>
+                            <div className="grid gap-2 text-center mb-6">
+                                <h1 className="text-3xl font-bold">Login</h1>
+                                <p className="text-balance text-muted-foreground">
+                                    Enter your email below to login to your account
+                                </p>
+                            </div>
+                            <div className="grid gap-4">
+                                <div className="grid gap-2">
+                                    <Label htmlFor="email">Email</Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        placeholder="m@example.com"
+                                        required
+                                        value={data.email}
+                                        onChange={(e) => setData('email', e.target.value)} 
+                                    />
+                                </div>
+                                <div className="grid gap-2">
+                                    <div className="flex items-center">
+                                        <Label htmlFor="password">Password</Label>
+                                        <Link
+                                            href="/forgot-password"
+                                            className="ml-auto inline-block text-sm underline"
+                                        >
+                                            Forgot your password?
+                                        </Link>
+                                    </div>
+                                    <Input
+                                        id="password"
+                                        type="password"
+                                        required
+                                        value={data.password}
+                                        onChange={(e) => setData('password', e.target.value)} 
+                                    />
+                                </div>
+                                <Button type="submit" className="w-full">
+                                    Login
+                                </Button>
+                            </div>
+                        </form>
+                        <div className="mt-4 text-center text-sm">
+                            Don&apos;t have an account?{" "}
+                            <Link href="/signup" className="underline">
+                                Sign up
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden bg-muted lg:block">
+                    <img
+                        src="https://ui.shadcn.com/placeholder.svg"
+                        alt="Image"
+                        className="h-full w-full object-cover dark:brightness-[0.2] dark:filter-saturate-[0]"
                     />
-
-                    {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
                 </div>
-
-                <div className="mt-4">
-                    <label htmlFor="password" className="block font-medium text-sm text-gray-700">Password</label>
-
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password}</p>}
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <input
-                            type="checkbox"
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                            className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <button
-                        type="submit"
-                        className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ms-4"
-                        disabled={processing}
-                    >
-                        Log in
-                    </button>
-                </div>
-            </form>
-        </GuestLayout>
+            </div>
+        </>
     );
 }

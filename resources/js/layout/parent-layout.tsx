@@ -5,7 +5,8 @@ import Footer from "./footer";
 import Sidebar from "./sidebar";
 import Stores from "@/lib/stores";
 
-const ParentLayout = ({ children }: { children: React.ReactNode }) => {
+const ParentLayout = (props: { auth: any; children: React.ReactNode; }) => {
+    const { auth, children } = props;
     const {
         isSidebarOpen: isOpen,
         setIsSidebarOpen: setIsOpen,
