@@ -1,7 +1,6 @@
 import { Link, Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import { Button } from "@/components/ui/button";
-// import { Button } from '@/Components/ui/button';
 
 export default function Welcome({ auth }: PageProps) {
     return (
@@ -22,22 +21,15 @@ export default function Welcome({ auth }: PageProps) {
                                     </Link>
                                 </Button>
                             ) : (
-                                <>
-                                    <Button
-                                        variant="link"
-                                        asChild
-                                        className="mr-4"
-                                    >
-                                        <Link href={route("login")}>
-                                            Log in
-                                        </Link>
-                                    </Button>
-                                    <Button variant="link" asChild>
-                                        <Link href={route("register")}>
-                                            Register
-                                        </Link>
-                                    </Button>
-                                </>
+                                <Button
+                                    variant="link"
+                                    asChild
+                                    className="mr-4"
+                                >
+                                    <Link href={route("login")}>
+                                        Log in
+                                    </Link>
+                                </Button>
                             )}
                         </div>
                     </nav>

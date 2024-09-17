@@ -13,7 +13,6 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
         post(route('login'), {
             onFinish: () => reset('password'),
         });
@@ -38,7 +37,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                     <Input
                                         id="email"
                                         type="email"
-                                        placeholder="m@example.com"
+                                        placeholder="admin@example.com"
                                         required
                                         value={data.email}
                                         onChange={(e) => setData('email', e.target.value)} 

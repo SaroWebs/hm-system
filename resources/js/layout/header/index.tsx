@@ -5,7 +5,6 @@ import { Refetch } from "./refetch";
 import { SheetMenu } from "./sheet-menu";
 import { UserNav } from "./user-nav";
 import { Button } from "@/Components/custom/button";
-import { router } from "@inertiajs/react";
 
 interface NavbarProps {
     title: string;

@@ -1,17 +1,51 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 
 interface HomeProps {
-    auth:any
+    auth: any
 }
 
 const Home: React.FC<HomeProps> = (props) => {
     return (
-        <AdminLayout {...props}>
-            <div className="">Test Page</div>
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">You're logged in!</div>
+        <AdminLayout title='Dashboard' {...props}>
+            <div className="py-4">
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="p-4 bg-white shadow rounded-lg">
+                        <h3 className="text-lg font-semibold">Wards</h3>
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <p className="text-lg font-semibold">Total</p>
+                                <p className="text-2xl font-bold">20</p>
+                            </div>
+                            <div>
+                                <p className="text-lg font-semibold">Available</p>
+                                <p className="text-2xl font-bold">10</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-4 bg-white shadow rounded-lg">
+                        <h3 className="text-lg font-semibold">Beds</h3>
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <p className="text-lg font-semibold">Total</p>
+                                <p className="text-2xl font-bold">500</p>
+                            </div>
+                            <div>
+                                <p className="text-lg font-semibold">Occupied</p>
+                                <p className="text-2xl font-bold">300</p>
+                            </div>
+                            <div>
+                                <p className="text-lg font-semibold">Unoccupied</p>
+                                <p className="text-2xl font-bold">200</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-4 bg-white shadow rounded-lg">
+                        <h3 className="text-lg font-semibold">Doctors</h3>
+                        <p className="text-2xl font-bold">50</p>
+                    </div>
+                    <div className="p-4 bg-white shadow rounded-lg">
+                        <h3 className="text-lg font-semibold">Nurses</h3>
+                        <p className="text-2xl font-bold">100</p>
                     </div>
                 </div>
             </div>
