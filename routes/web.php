@@ -14,6 +14,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(PagesController::class)->group(function () {
         Route::get('/home', 'dashboard')->name('home');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
+        Route::get('/patients', 'patients')->name('patients');
+        Route::get('/patients/appointment', 'appointment')->name('appointment');
+        Route::get('/patients/admission', 'admission')->name('admission');
     });
 
     Route::controller(ProfileController::class)->group(function () {

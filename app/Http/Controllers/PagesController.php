@@ -24,4 +24,18 @@ class PagesController extends Controller
     {
         return Inertia::render('Dashboard/Home');
     }
+
+    public function patients()
+    {
+        return Inertia::render('Patients/Patients');
+    }
+
+    public function appointment()
+    {
+        return Inertia::render('Patients/Appointment');
+    }
+    public function admission()
+    {
+        return Inertia::render('Patients/Admission');
+    }
 }
