@@ -168,40 +168,7 @@ export function getMenuList(pathname: string): Group[] {
                     active: pathname.includes("/labs"),
                     icon: MicroscopeIcon,
                     submenus: [],
-                },
-                // {
-                //   href: "",
-                //   label: "Settings",
-                //   active: pathname.includes("/posts"),
-                //   icon: SquarePen,
-                //   submenus: [
-                //     {
-                //       href: "/posts",
-                //       label: "School Creation",
-                //       active: pathname === "/posts",
-                //     },
-                //     {
-                //       href: "/posts/new",
-                //       label: "Roll Management",
-                //       active: pathname === "/posts/new",
-                //     },
-                //     {
-                //       href: "/posts/new",
-                //       label: "Website Management",
-                //       active: pathname === "/posts/new",
-                //     },
-                //     {
-                //       href: "/posts/new",
-                //       label: "Time Table (Class - Teacher)",
-                //       active: pathname === "/posts/new",
-                //     },
-                //     {
-                //       href: "/posts/new",
-                //       label: "Notifications and SMS",
-                //       active: pathname === "/posts/new",
-                //     },
-                //   ],
-                // },
+                }
             ],
         },
 
@@ -220,13 +187,6 @@ export function getMenuList(pathname: string): Group[] {
                     label: "Account",
                     active: pathname.includes("/accounts"),
                     icon: Settings,
-                    submenus: [],
-                },
-                {
-                    href: "/settings/school-creation/school",
-                    label: "School Creation",
-                    active: pathname === "/settings/school-creation/school",
-                    icon: School,
                     submenus: [],
                 },
                 {
