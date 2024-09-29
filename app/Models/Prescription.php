@@ -10,12 +10,7 @@ class Prescription extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'patient_id', 'doctor_id', 'appointment_id', 'prescription_number',
-        'medications', 'instructions', 'issue_date', 'start_date', 'end_date',
-        'duration_days', 'is_recurring', 'recurrence_pattern', 'notes',
-        'is_dispensed', 'dispensed_by', 'dispensed_at'
-    ];
+    protected $guarded = [];
 
     protected $casts = [
         'medications' => 'array',

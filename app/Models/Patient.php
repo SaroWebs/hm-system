@@ -2,26 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Billing;
+use App\Models\LabTest;
+use App\Models\Appointment;
+use App\Models\Prescription;
+use App\Models\MedicalRecord;
+use App\Models\PatientDetail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Patient extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'user_id', 'patient_number', 'date_of_birth', 'gender', 'blood_type',
-        'allergies', 'chronic_conditions', 'emergency_contact_name',
-        'emergency_contact_number', 'insurance_provider', 'insurance_policy_number',
-        'last_visit_date', 'notes'
-    ];
+    protected $guarded = [];
 
-    protected $dates = ['date_of_birth', 'last_visit_date'];
-
-    public function user()
+    public function details()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(PatientDetail::class);
     }
 
     public function appointments()

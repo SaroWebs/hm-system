@@ -1,37 +1,20 @@
 import {
-    BarChartHorizontal,
     BellRing,
-    ClipboardCheck,
     Clock8,
-    DollarSign,
-    DoorOpen,
     Eye,
     FileIcon,
     Fingerprint,
     Globe,
-    GraduationCapIcon,
-    Hash,
     IndianRupee,
-    IndianRupeeIcon,
-    LampDesk,
     LayoutGrid,
     LucideIcon,
-    Megaphone,
     MicroscopeIcon,
     Network,
-    NotebookPen,
-    PencilRuler,
     Plus,
-    ReceiptEuro,
-    School,
-    ScrollText,
     Settings,
-    Settings2,
     SquareGanttChart,
-    SquareUser,
-    StethoscopeIcon,
     Users,
-    UsersRound,
+    Users2,
 } from "lucide-react";
 
 type Submenu = {
@@ -57,7 +40,7 @@ type Group = {
 export function getMenuList(pathname: string): Group[] {
     return [
         {
-            groupLabel: "",
+            groupLabel: "Dashboard",
             menus: [
                 {
                     href: "/dashboard",
@@ -69,55 +52,31 @@ export function getMenuList(pathname: string): Group[] {
             ],
         },
         {
-            groupLabel: "Menu",
+            groupLabel: "Patient Management",
             menus: [
                 {
-                    href: "",
-                    label: "Patient Management",
-                    active:
-                        pathname === "/patients" ||
-                        pathname === "/patient/admission",
+                    href: "#",
+                    label: "Patients",
+                    active: pathname === "/patients",
                     icon: Users,
                     submenus: [
                         {
+                            href: "/patients/new",
+                            label: "Patient Admission",
+                            icon: Plus,
+                            active: pathname === "/patients/new",
+                        },
+                        {
                             href: "/patients",
-                            label: "Patients",
+                            label: "View All",
                             icon: Eye,
                             active: pathname === "/patients",
                         },
                         {
                             href: "/patients/appointment",
-                            label: "Appointment",
-                            icon: Plus,
-                            active: pathname === "/patients/appointment",
-                        },
-                        {
-                            href: "/patients/admission",
-                            label: "Admission",
-                            icon: Plus,
-                            active: pathname === "/patients/admission",
-                        },
-                    ],
-                },
-                {
-                    href: "",
-                    label: "Appointments",
-                    active:
-                        pathname === "/appointments" ||
-                        pathname === "/appointment/new",
-                    icon: Users,
-                    submenus: [
-                        {
-                            href: "/appointments",
                             label: "Appointments",
-                            icon: Eye,
-                            active: pathname === "/appointments",
-                        },
-                        {
-                            href: "/appointment/new",
-                            label: "New Appointment",
-                            icon: Plus,
-                            active: pathname === "/appointment/new",
+                            active: pathname === "/patients/appointment",
+                            icon: Users2,
                         },
                     ],
                 },
@@ -128,26 +87,55 @@ export function getMenuList(pathname: string): Group[] {
                     icon: FileIcon,
                     submenus: [],
                 },
+            ],
+        },
+        {
+            groupLabel: "Financial Management",
+            menus: [
                 {
-                    href: "",
-                    label: "Financial",
-                    active: pathname.includes("/financial"),
+                    href: "/financial/records",
+                    label: "Financial Records",
+                    active: pathname === "/financial/records",
                     icon: IndianRupee,
+                    submenus: [],
+                },
+                {
+                    href: "/billing/records",
+                    label: "Billing Records",
+                    active: pathname === "/billing/records",
+                    icon: IndianRupee,
+                    submenus: [],
+                },
+            ],
+        },
+        {
+            groupLabel: "Laboratory & Diagnostics",
+            menus: [
+                {
+                    href: "/labs",
+                    label: "Lab & Diagnostics",
+                    active: pathname.includes("/labs"),
+                    icon: MicroscopeIcon,
                     submenus: [
                         {
-                            href: "/financial/records",
-                            label: "Financial Records",
+                            href: "/labs/results",
+                            label: "View Lab Results",
                             icon: Eye,
-                            active: pathname === "/financial/records",
+                            active: pathname === "/labs/results",
                         },
                         {
-                            href: "/billing/records",
-                            label: "Billing Records",
-                            icon: Eye,
-                            active: pathname === "/billing/records",
+                            href: "/labs/request",
+                            label: "Request Lab Test",
+                            icon: Plus,
+                            active: pathname === "/labs/request",
                         },
                     ],
                 },
+            ],
+        },
+        {
+            groupLabel: "Reports",
+            menus: [
                 {
                     href: "/reports",
                     label: "Reports",
@@ -155,6 +143,11 @@ export function getMenuList(pathname: string): Group[] {
                     icon: SquareGanttChart,
                     submenus: [],
                 },
+            ],
+        },
+        {
+            groupLabel: "Account Management",
+            menus: [
                 {
                     href: "/account-management",
                     label: "Account Management",
@@ -162,29 +155,21 @@ export function getMenuList(pathname: string): Group[] {
                     icon: Fingerprint,
                     submenus: [],
                 },
-                {
-                    href: "/labs",
-                    label: "Lab & Diagnostics",
-                    active: pathname.includes("/labs"),
-                    icon: MicroscopeIcon,
-                    submenus: [],
-                }
             ],
         },
-
         {
             groupLabel: "Settings",
             menus: [
                 {
                     href: "/users",
-                    label: "Users",
+                    label: "User Management",
                     active: pathname.includes("/users"),
                     icon: Users,
                     submenus: [],
                 },
                 {
                     href: "/accounts",
-                    label: "Account",
+                    label: "Account Settings",
                     active: pathname.includes("/accounts"),
                     icon: Settings,
                     submenus: [],
@@ -205,7 +190,7 @@ export function getMenuList(pathname: string): Group[] {
                 },
                 {
                     href: "/time-table-management",
-                    label: "Time Table",
+                    label: "Time Table Management",
                     active: pathname === "/time-table-management",
                     icon: Clock8,
                     submenus: [],
