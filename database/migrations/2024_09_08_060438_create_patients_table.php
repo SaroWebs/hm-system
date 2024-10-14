@@ -17,13 +17,16 @@ return new class extends Migration
             $table->string('last_name')->nullable();
             $table->date('date_of_birth');
             $table->enum('gender', ['male', 'female', 'other'])->default('male');
-            $table->string('contact_number')->unique(); // Ensure unique contact numbers
-            $table->string('email')->nullable()->unique(); // Unique email for patient communication
+            $table->enum('marital_status', ['married', 'unmarried', 'widowed','separated','divorced','other'])->default('other');
+            $table->string('contact_number');
+            $table->string('email')->nullable()->unique();
             $table->text('address')->nullable();
-            $table->string('emergency_contact_name')->nullable();
-            $table->string('emergency_contact_number')->nullable();
-            $table->string('insurance_provider')->nullable(); // Added for insurance tracking
-            $table->string('policy_number')->nullable(); // Added for insurance tracking
+            $table->string('religion')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('relative_name')->nullable();
+            $table->string('relationship')->nullable();
+            $table->string('relative_phone')->nullable();
+            $table->boolean('verified')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

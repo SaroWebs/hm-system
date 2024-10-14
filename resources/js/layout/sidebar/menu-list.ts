@@ -61,10 +61,10 @@ export function getMenuList(pathname: string): Group[] {
                     icon: Users,
                     submenus: [
                         {
-                            href: "/patients/new",
+                            href: "/patients/admission",
                             label: "Patient Admission",
                             icon: Plus,
-                            active: pathname === "/patients/new",
+                            active: pathname === "/patients/admission",
                         },
                         {
                             href: "/patients",

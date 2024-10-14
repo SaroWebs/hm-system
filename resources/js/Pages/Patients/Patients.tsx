@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/Components/ui/table";
+import { Button } from "@/components/ui/button";
 
 interface PatientsProps {
     auth: any;
@@ -16,14 +17,14 @@ const Patients: FC<PatientsProps> = (props) => {
         per_page: 50,
         sort_by: 'created_at',
         sort: 'desc',
-        search:''
+        search: ''
     });
 
     const loadData = async () => {
         try {
             const response = await axios.get('/api/patients', { params: filters });
-            setPatients({ 
-                data: response.data.data, 
+            setPatients({
+                data: response.data.data,
                 total: response.data.total,
             });
         } catch (error) {
@@ -39,7 +40,7 @@ const Patients: FC<PatientsProps> = (props) => {
     useEffect(() => {
         loadData();
     }, []);
-  
+
     useEffect(() => {
         console.log(patients);
     }, [patients]);
@@ -49,6 +50,14 @@ const Patients: FC<PatientsProps> = (props) => {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                        <div className="flex justify-between items-center mb-4">
+                            <div className="filters">
+                                
+                            </div>
+                            <div className="action">
+                                <Button>New Patient</Button>
+                            </div>
+                        </div>
                         <div className="w-full">
                             <Table>
                                 <TableCaption>
@@ -56,16 +65,13 @@ const Patients: FC<PatientsProps> = (props) => {
                                 </TableCaption>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead className="min-w-[100px]">Name</TableHead>
-                                        <TableHead className="">DOB</TableHead>
+                                        <TableHead className="min-w-[120px]">Name</TableHead>
                                         <TableHead className="">Gen</TableHead>
-                                        <TableHead className="min-w-[150px]">Emerg. Contact</TableHead>
-                                        <TableHead className="min-w-[120px]">Emerg. Phone</TableHead>
-                                        <TableHead className="min-w-[150px]">Ins. Provider</TableHead>
-                                        <TableHead className="">Email</TableHead>
                                         <TableHead className="">Phone</TableHead>
-                                        <TableHead className="min-w-[180px]">Addr.</TableHead>
-                                        <TableHead className="min-w-[100px]">Action</TableHead>
+                                        <TableHead className="">Email</TableHead>
+                                        <TableHead className="min-w-[100px]">Contact Person</TableHead>
+                                        <TableHead className="">Emerg. Phone</TableHead>
+                                        <TableHead className="min-w-[150px]">Action</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -75,28 +81,19 @@ const Patients: FC<PatientsProps> = (props) => {
                                                 {patient.first_name + ' ' + patient.last_name}
                                             </TableCell>
                                             <TableCell>
-                                                {patient.date_of_birth}
+                                                {patient.gender}
                                             </TableCell>
                                             <TableCell>
-                                                {patient.gender}
+                                                {patient.contact_number}
+                                            </TableCell>
+                                            <TableCell>
+                                                {patient.email}
                                             </TableCell>
                                             <TableCell>
                                                 {patient.emergency_contact_name}
                                             </TableCell>
                                             <TableCell>
                                                 {patient.emergency_contact_number}
-                                            </TableCell>
-                                            <TableCell>
-                                                {patient.insurance_provider}
-                                            </TableCell>
-                                            <TableCell>
-                                                {patient.email}
-                                            </TableCell>
-                                            <TableCell>
-                                                {patient.contact_number}
-                                            </TableCell>
-                                            <TableCell>
-                                                {patient.address}
                                             </TableCell>
                                             <TableCell>
                                                 <div className="">Buttons</div>
@@ -108,19 +105,22 @@ const Patients: FC<PatientsProps> = (props) => {
                         </div>
                         {/* pagination */}
                         <div className="flex justify-end items-center mt-4">
-                            <button 
-                                onClick={() => handlePageChange(filters.page - 1)} disabled={filters.page === 1} 
-                                className="mr-2"
-                            >
-                                Previous
-                            </button>
-                            <span className="mr-2">Page {filters.page}</span>
-                            <button 
-                                onClick={() => handlePageChange(filters.page + 1)} 
-                                disabled={patients.data.length < filters.per_page}
-                            >
-                                Next
-                            </button>
+                            {filters.page != 1 &&
+                                <Button
+                                    onClick={() => handlePageChange(filters.page - 1)}
+                                    className="mr-2"
+                                >
+                                    Previous
+                                </Button>
+                            }
+                            {/* <span className="mr-2">Page {filters.page}</span> */}
+                            {patients.data.length > filters.per_page &&
+                                <Button
+                                    onClick={() => handlePageChange(filters.page + 1)}
+                                >
+                                    Next
+                                </Button>
+                            }
                         </div>
                     </div>
                 </div>
