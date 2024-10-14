@@ -19,7 +19,7 @@ const menuItems: MenuItem[] = [
         icon: 'Users',
         children: [
             { title: 'All Patients', path: '/patients', icon: 'List' },
-            { title: 'Add Patient', path: '/patients/add', icon: 'UserPlus' },
+            { title: 'Add Patient', path: '/patients/addmission', icon: 'UserPlus' },
         ],
     },
     {
